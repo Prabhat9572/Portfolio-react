@@ -1,0 +1,100 @@
+/* Navbar container */
+.navbar {
+  display: flex;
+  justify-content: space-between; /* Space between logo and toggle button */
+  align-items: center;     /* Center vertically */
+  padding: 1rem 2rem;
+  background-color: #333;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  /* Logo styling */
+  .logo h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #fff;
+    margin: 0;
+  }
+
+  /* Navigation Links */
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+    justify-content: center; /* Center nav links on desktop */
+    flex-grow: 1; /* Allow nav links to take available space */
+    transition: transform 0.3s ease-out; /* Smooth transition for slide effect */
+    opacity: 1; /* Keep the menu visible by default */
+  }
+
+  li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    
+    &:hover {
+      color: #f39c12;
+    }
+  }
+
+  /* Mobile Menu Toggle Button */
+  .mobile-menu-toggle {
+    display: none; /* Initially hidden on desktop */
+    background: none;
+    border: none;
+    color: hsl(0, 0%, 100%);
+    font-size: 2rem;
+    cursor: pointer;
+    opacity: 0;
+    
+    .toggle-icon {
+      transition: transform 0.3s ease;
+    }
+
+    .toggle-icon.open {
+      transform: rotate(90deg); /* Rotate the icon when the menu is open */
+    }
+  }
+
+  /* Responsive Styling for mobile view */
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column; /* Stack elements vertically on mobile */
+      align-items: flex-start; /* Align items to the left */
+    }
+
+    /* Center the navigation links */
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      align-items: center;
+      position: absolute;
+      top: 60px; /* Adjust position below the navbar */
+      left: 0;
+      right: 0;
+      background-color: #333;
+      padding: 1rem 0;
+      transform: translateY(-100%); /* Initially off-screen */
+      opacity: 0; /* Initially hidden */
+      transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    }
+
+    .nav-links.active {
+      transform: translateY(0); /* Slide in when active */
+      opacity: 1; /* Make the menu visible */
+    }
+
+    /* Show the toggle button on mobile */
+    .mobile-menu-toggle {
+      display: block; /* Show the toggle button on mobile */
+    }
+  }
+}
